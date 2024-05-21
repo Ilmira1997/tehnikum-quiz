@@ -1,5 +1,5 @@
 import React from "react";
-
+import { LinkButton } from "../components/LinkButton";
 const StepFour = () => {
   return (
     <div className="container">
@@ -43,9 +43,12 @@ const StepFour = () => {
                 <label htmlFor="variant-5">5</label>
               </li>
             </ul>
-            <button type="button" id="next-btn" disabled>
-              Далее
-            </button>
+            <LinkButton
+              isDisabled={false}
+              linkType="button"
+              linkText="Далее"
+              linkBtn="/thanks"
+            />
           </div>
         </div>
       </div>

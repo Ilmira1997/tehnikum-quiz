@@ -1,6 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { AppHeader } from "../components/AppHeader";
+import { AppInput } from "../components/AppInput";
+import { LinkButton } from "../components/LinkButton";
 
 const StepOne = () => {
+  const [answer, setAnswer] = useState("");
+  const [buttonError, setButtonError] = useState(true);
+
+  const handleInputChange = (value) => {
+    setAnswer(value);
+  };
+
+  useEffect(() => {
+    setButtonError(!answer);
+  }, [answer]);
+
   return (
     <div className="container">
       <div className="wrapper">
@@ -20,21 +34,20 @@ const StepOne = () => {
             </div>
           </div>
           <div className="question">
-            <h2>1. Занимательный вопрос</h2>
-            <label className="input-wrapper">
-              <input
-                required
-                type="text"
-                name="answer"
-                placeholder="Ваш ответ"
-              />
-              <span id="error-message">
-                Введите номер в правильном формате например
-              </span>
-            </label>
-            <button type="button" disabled id="next-btn">
-              Далее
-            </button>
+            <AppHeader headerText="1. Занимательный вопрос" headerType="h2" />
+            <AppInput
+              inputPlaceholder="Ваш ответ"
+              inputType="text"
+              id="username"
+              inputValue={answer}
+              inputChange={handleInputChange}
+            />
+            <LinkButton
+              isDisabled={buttonError}
+              linkType="button"
+              linkText="Далее"
+              linkBtn="/step-two"
+            />
           </div>
         </div>
       </div>

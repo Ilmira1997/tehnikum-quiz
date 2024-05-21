@@ -1,47 +1,76 @@
-import React from "react";
-
+import React, { useState} from "react";
+import {ProgressBar} from "../components/ProgressBar";
+import { AppHeader } from "../components/AppHeader";
+import { Answer } from "../components/Answer";
+import { LinkButton } from "../components/LinkButton";
 const StepTwo = () => {
+  const variants = [
+    {
+      id: "variant-1",
+      labelText:"Frontend разработчик"
+    },
+    {
+      id: "variant-2",
+      labelText:"Python разработчик"
+    },
+    // {
+    //   id: "variant-3",
+    //   labelText:"Digital маркетолог"
+    // },
+    {
+      id: "variant-4",
+      labelText:"Mobilography"
+    },
+    {
+      id: "variant-5",
+      labelText:"Uzum seller"
+    },
+    // {
+    //   id: "variant-6",
+    //   labelText:"SMM-специалист"
+    // },
+    // {
+    //   id: "variant-7",
+    //   labelText:"SMM:для новичков"
+    // },
+    {
+      id: "variant-8",
+      labelText:"UX/UI дизайнер"
+    },
+    // {
+    //   id: "variant-9",
+    //   labelText:"Target full course"
+    // },
+    // {
+    //   id: "variant-10",
+    //   labelText:"Графический дизайн"
+    // },
+    {
+      id: "variant-11",
+      labelText:"Дата аналитик"
+    },
+
+  ]
+  const [checkedAnswer, setCheckedAnswer]=useState(null)
+  
   return (
     <div className="container">
       <div className="wrapper">
-        <div className="variants-quiz">
-          <div className="indicator">
-            <div className="indicator__text">
-              <span className="indicator__description">
-                Скидка за прохождение опроса:
-              </span>
-              <span className="indicator__value">15%</span>
-            </div>
-            <div className="indicator__progressbar">
-              <div className="indicator__unit indicator__unit-1 _active"></div>
-              <div className="indicator__unit indicator__unit-2"></div>
-              <div className="indicator__unit indicator__unit-3"></div>
-              <div className="indicator__unit indicator__unit-4"></div>
-            </div>
-          </div>
+        <div className="variants-quiz">        
+          <ProgressBar/>
           <div className="question">
-            <h2>1. Занимательный вопрос</h2>
+            <AppHeader headerText="На каком курсе вы обучаетесь ?" headerType="h2"/>
             <ul className="variants">
-              <li className="variant-wrapper">
-                <input required type="radio" name="variant-1" id="variant-1" />
-                <label htmlFor="variant-1">Ваш ответ</label>
-              </li>
-              <li className="variant-wrapper">
-                <input required type="radio" name="variant-2" id="variant-2" />
-                <label htmlFor="variant-2">Ваш ответ</label>
-              </li>
-              <li className="variant-wrapper">
-                <input required type="radio" name="variant-3" id="variant-3" />
-                <label htmlFor="variant-3">Ваш ответ</label>
-              </li>
-              <li className="variant-wrapper">
-                <input required type="radio" name="variant-4" id="variant-4" />
-                <label htmlFor="variant-4">Ваш ответ</label>
-              </li>
+              {variants.map((elem)=>{
+                return <Answer key={elem.id} id={elem.id} labelText={elem.labelText} onChange={()=>setCheckedAnswer(elem.id)} checked={checkedAnswer===elem.id}/>
+              })}
             </ul>
-            <button type="button" disabled id="next-btn">
-              Далее
-            </button>
+            <LinkButton
+              isDisabled={checkedAnswer === null}
+              linkType="button"
+              linkText="Далее"
+              linkBtn="/step-three"
+            />
           </div>
         </div>
       </div>
