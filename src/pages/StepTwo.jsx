@@ -62,7 +62,13 @@ const StepTwo = () => {
             <AppHeader headerText="На каком курсе вы обучаетесь ?" headerType="h2"/>
             <ul className="variants">
               {variants.map((elem)=>{
-                return <Answer key={elem.id} id={elem.id} labelText={elem.labelText} onChange={()=>setCheckedAnswer(elem.id)} checked={checkedAnswer===elem.id}/>
+                return <AnswerItem 
+                key={elem.id} 
+                id={elem.id} 
+                labelText={elem.labelText} 
+                onChange={()=>setCheckedAnswer(elem.id)} 
+                checked={checkedAnswer===elem.id}
+                />
               })}
             </ul>
             <LinkButton
